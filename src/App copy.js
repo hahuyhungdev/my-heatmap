@@ -5,7 +5,9 @@ import "./style.css";
 
 function App() {
   const [data, setData] = React.useState([]);
+  const [point, setPoint] = React.useState({});
   const testData = useMemo(() => [], []);
+
   console.log("render");
   useEffect(() => {
     var heatmapInstance = h337.create({
@@ -16,12 +18,19 @@ function App() {
       blur: 0.75,
     });
     // const logs = [];
+    localStorage.setItem("data", JSON.stringify(data));
+    const getData = JSON.parse(localStorage.getItem("data"));
     document.querySelector(".demo-wrapper").onmousemove = function (ev) {
-      const point = {
+      // point = {
+      //   x: ev.layerX,
+      //   y: ev.layerY,
+      //   value: Math.random() * 100,
+      // };
+      setPoint({
         x: ev.layerX,
         y: ev.layerY,
         value: Math.random() * 100,
-      };
+      });
       // logs.push(point);
       // console.log(logs);
       // check if the point is already in the array
@@ -36,15 +45,20 @@ function App() {
         // if it is not, add it to the array
         testData.push(point);
       }
-      // console.log(point);
-      // clonet the array testData
-      // const clone = testData;
-      // console.log(clone);
+      console.log(point);
       setData(testData);
-      console.log(testData);
-      heatmapInstance.addData(point);
+      heatmapInstance.addData(getData.length > 0 ? point : point);
     };
-  }, [testData]);
+
+    // const data = [{ x: 10, y: 15, value: 5 }];
+    // console.log(getData);
+    // heatmapInstance
+    //   .addData
+    //   // point have is object null or undefined ? getData : point
+    //   ();
+
+    // console.log(point);
+  }, [testData, point, data]);
 
   return (
     <div className="App">
