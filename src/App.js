@@ -1,12 +1,14 @@
 import h337 from "heatmap.js";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 import "./style.css";
 
 function App() {
   const [data, setData] = React.useState([]);
   const testData = useMemo(() => [], []);
+
   console.log("render");
+  const points = useRef({});
   useEffect(() => {
     var heatmapInstance = h337.create({
       container: document.querySelector(".demo-wrapper"),
@@ -16,35 +18,28 @@ function App() {
       blur: 0.75,
     });
     // const logs = [];
+    var dataLocal = localStorage.getItem("testData");
+    dataLocal = JSON.parse(dataLocal);
     document.querySelector(".demo-wrapper").onmousemove = function (ev) {
-      const point = {
+      points.current = {
         x: ev.layerX,
         y: ev.layerY,
         value: Math.random() * 100,
       };
-      // logs.push(point);
-      // console.log(logs);
-      // check if the point is already in the array
-      if (testData.some((e) => e.x === point.x && e.y === point.y)) {
-        // if it is, update the value
-        testData.forEach((e) => {
-          if (e.x === point.x && e.y === point.y) {
-            e.value = point.value;
-          }
-        });
-      } else {
-        // if it is not, add it to the array
-        testData.push(point);
-      }
-      // console.log(point);
-      // clonet the array testData
-      // const clone = testData;
-      // console.log(clone);
+      console.log(points.current);
+      testData.push(points.current);
       setData(testData);
-      console.log(testData);
-      heatmapInstance.addData(point);
+      // save test data to local storage
+      localStorage.setItem("testData", JSON.stringify(testData));
+
+      console.log(data);
+      heatmapInstance.addData(points.current === null ? dataLocal : points.current);
     };
-  }, [testData]);
+
+    heatmapInstance.addData(dataLocal === null ? data : dataLocal);
+
+    // heatmapInstance.addData(points.current);
+  }, [data, testData]);
 
   return (
     <div className="App">
