@@ -36,7 +36,8 @@ body {
 .demo-wrapper {
   height: 500px;
   /* background: rgba(0, 0, 0, 0.03); */
-  background-image: url(./factory.jpg);
+  background-image: url(./factory1.jpg);
+  background-size: cover;
   border: 3px solid black;
   position: absolute;
   top: 0;
@@ -48,6 +49,27 @@ body {
 .heatmap {
   width: 100%;
   height: 100%;
+}
+.tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  line-height: 18px;
+  display: none;
+}
+.resetData,
+.activeGetvalue {
+  height: 30px;
+  border-radius: 10px;
+  background-color: #f44336;
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  align-items: center;
 }
 .breadcrumb-trail {
   list-style: none;
