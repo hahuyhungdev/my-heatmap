@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 // import usersData from "../../data/fake.js";
-export const ShowData = ({ usersData }) => {
+export const ShowData = memo(({ usersData }) => {
   console.log("usersData");
   return (
     <div className="listUsers">
@@ -20,6 +20,6 @@ export const ShowData = ({ usersData }) => {
       })}
     </div>
   );
-};
+});
 
 export default memo(ShowData);

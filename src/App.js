@@ -1,41 +1,44 @@
 import h337 from "heatmap.js";
 import React, { useEffect, useMemo, useRef, useCallback } from "react";
 import RangePicker from "./components/RangePicker";
-import usersData from "./data/fake";
+import usersData from "./data/userData.json";
 import { Card, ShowData, Test } from "./components";
 import { useState } from "react";
-import { dateStringsNumber } from "./utils";
+import { dateStringsNumber, convertDate } from "./utils";
 
 import "./style.css";
 import "antd/dist/reset.css";
+import DayPicker from "./components/DayPicker";
 
 function App() {
   const [valueIncrease, setValueIncrease] = useState(0);
   const [data, setData] = React.useState([]);
   const testData = useMemo(() => [], []);
   const [dates, setDates] = useState([]);
+  const [date, setDate] = useState("");
 
-  const handleChange = (dates, dateStrings) => {
-    setDates(dateStrings);
-    dateStringsNumber(dateStrings);
-    console.log(dateStringsNumber(dateStrings));
-  };
+  const handleChange = useCallback((dates, dateStrings) => {
+    console.log(typeof dateStrings === "string");
+    // setDates(dateStrings);
+    // dateStringsNumber(dateStrings);
+    typeof dateStrings === "string"
+      ? convertDate(dateStrings) && setDate(convertDate(dateStrings))
+      : dateStringsNumber(dateStrings) && setDates(dateStrings);
+  }, []);
 
   // handle usersData flow dates selected
   // type of user.date is string, type of dates[0] is string.
   // if number user.date >= dates[0] and user.date <= dates[1] => return true
-  const usersDataFlow = useMemo(() => {
+  const usersDataFilter = useMemo(() => {
     return usersData.filter((user) => {
-      console.table(
-        Number(user.date.replace(/-/g, "")) >= dateStringsNumber(dates)[0] &&
-          Number(user.date.replace(/-/g, "")) <= dateStringsNumber(dates)[1]
-      );
       return (
-        Number(user.date.replace(/-/g, "")) >= dateStringsNumber(dates)[0] &&
-        Number(user.date.replace(/-/g, "")) <= dateStringsNumber(dates)[1]
+        convertDate(user.date) >= dateStringsNumber(dates)[0] && convertDate(user.date) <= dateStringsNumber(dates)[1]
       );
     });
   }, [dates]);
+  // or use this
+  // const usersDataFlow = useMemo(() => usersDataFilter, [usersDataFilter]);
+  console.log(usersDataFilter);
 
   const points = useRef({});
   useEffect(() => {
@@ -75,10 +78,10 @@ function App() {
   return (
     <div className="App">
       <h2>Start editing to see some magic happen!</h2>
+      {/* <DayPicker handleChange={handleChange} date={date} /> */}
       <RangePicker handleChange={handleChange} dates={dates} />
 
-      <ShowData usersData={usersDataFlow} />
-      <Test />
+      <ShowData usersData={usersDataFilter} />
       <Card valueIncrease={valueIncrease} handleIncrease={handleIncrease} />
       <div className="demo-wrapper">
         <div className="heatmap"></div>

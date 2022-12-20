@@ -1,0 +1,30 @@
+[
+  {
+    "username": "Samppa Nori",
+    "registered": "1325372400000",
+    "role": "Member",
+    "status": "Active",
+    "date": "2022-12-18"
+  },
+  {
+    "username": "Estavan Lykos",
+    "registered": "132805800000",
+    "role": "Staff",
+    "status": "Banned",
+    "date": "2022-12-01"
+  },
+  {
+    "username": "Chetan Mohamed",
+    "registered": "13280800000",
+    "role": "Admin",
+    "status": "Inactive",
+    "date": "2020-10-30"
+  },
+  {
+    "username": "Derick Maximinus",
+    "registered": "13532156400000",
+    "role": "Member",
+    "status": "Pending",
+    "date": "2022-10-03"
+  }
+]

@@ -1,12 +1,16 @@
 import { DatePicker } from "antd";
 import moment from "moment";
 import React, { memo } from "react";
+const Today = new Date().toLocaleDateString("en-CA");
 
-const RangePicker = memo(({ dates, handleChange }) => {
-  // console.log("RangePicker");
+// const onChange = (date, dateString) => {
+//   console.log(Number(dateString.replace(/-/g, "")));
+//   console.log(Number(Today.replace(/-/g, "")));
+// };
+const DayPicker = memo(({ handleChange, date }) => {
   return (
     <>
-      <DatePicker.RangePicker
+      <DatePicker
         onChange={handleChange}
         format="YYYY-MM-DD"
         placeholder={["Start Date", "End Date"]}
@@ -14,18 +18,15 @@ const RangePicker = memo(({ dates, handleChange }) => {
       />
       <p
         style={{
-          color: "red",
+          color: "yellow",
           fontSize: "20px",
           fontWeight: "bold",
           marginTop: "10px",
         }}
       >
-        {dates.length === 0
-          ? "Please select date"
-          : `
-         Selected Date: ${dates[0]} to ${dates[1]}`}
+        {date}
       </p>
     </>
   );
 });
-export default RangePicker;
+export default DayPicker;
