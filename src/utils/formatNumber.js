@@ -4,10 +4,8 @@ export const dateStringsNumber = (dateStrings) => {
     return Number(date.replace(/-/g, ""));
   });
 };
-// export const convertDate = useCallback((date) => {
-//   return Number(date.replace(/-/g, ""));
-// }, []);
 
 export const convertDate = (date) => {
-  return Number(date.replace(/-/g, ""));
+  // return Number(date.replace(/-/g, ""));
+  return Number(date.substring(0, 10).replace(/-/g, ""));
 };

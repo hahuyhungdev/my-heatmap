@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 // import usersData from "../../data/fake.js";
 export const ShowData = memo(({ usersData }) => {
-  console.log("usersData");
+  // console.log("usersData");
   return (
     <div className="listUsers">
       {usersData.map((user, index) => {

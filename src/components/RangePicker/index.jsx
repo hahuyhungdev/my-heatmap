@@ -2,7 +2,7 @@ import { DatePicker } from "antd";
 import moment from "moment";
 import React, { memo } from "react";
 
-const RangePicker = memo(({ dates, handleChange }) => {
+export const RangePicker = memo(({ dates, handleChange }) => {
   // console.log("RangePicker");
   return (
     <>
