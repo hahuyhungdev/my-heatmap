@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,7 +26,29 @@
 .App-link {
   color: #61dafb;
 }
-
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.navigation a {
+  color: #eb500e;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: medium;
+  font-weight: 700;
+}
+.navigation button {
+  min-width: 100px;
+  border-radius: 10px;
+  border: 1px solid #eb500e;
+  padding: 5px;
+}
+.header {
+  margin-bottom: 30px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +56,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* ant design */
+:where(.css-dev-only-do-not-override-9ntgx0).ant-btn.ant-btn-block {
+  border-radius: 10px;
+  width: initial;
 }

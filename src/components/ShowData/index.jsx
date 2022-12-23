@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import moment from "moment";
 // import usersData from "../../data/fake.js";
 export const ShowData = memo(({ usersData }) => {
   // console.log("usersData");
@@ -14,7 +15,7 @@ export const ShowData = memo(({ usersData }) => {
             }}
           >
             <span>{user.username}</span>
-            <span>{user.date}</span>
+            <span>{moment.unix(user.date).format("YYYY - MM - DD HH:mm")}</span>
           </div>
         );
       })}

@@ -4,11 +4,11 @@ import React from "react";
 
 export const TimeAgo = () => {
   const [inputTimestamp, setInputTimestamp] = React.useState(moment().unix());
-  const [inputDate, setInputDate] = React.useState(moment().format("YYYY,MM,DD HH:mm:ss"));
+  const [inputDate, setInputDate] = React.useState(moment().format("YYYY,MM,DD HH:mm"));
 
-  console.log("currentTime", inputDate);
+  // console.log("compare", inputDate);
   // convert timestamp to format date
-  const ConvertTimestamp = moment.unix(inputTimestamp).format("YYYY,MM,DD HH:mm:ss");
+  const ConvertTimestamp = moment.unix(inputTimestamp).format("YYYY,MM,DD HH:mm");
 
   // console.log(date.fromNow(true));
   var a = moment([2007, 10, 1]);
@@ -16,14 +16,13 @@ export const TimeAgo = () => {
   // console.log(a.from(b));
 
   // convert date to timestamp
-  const convertDateToTimestamp = moment(inputDate, "YYYY,MM,DD HH:mm:ss").unix();
-  console.log("convertDateToTimestamp", convertDateToTimestamp);
+  const convertDateToTimestamp = moment(inputDate, "YYYY,MM,DD HH:mm").unix();
+  // console.log("convertDateToTimestamp", convertDateToTimestamp);
   //Relative
   const Relative = moment.unix(convertDateToTimestamp).fromNow();
-  const onFinish = (values) => {
+  const onFinish = (values, dataTest) => {
     setInputTimestamp(values.timestamp);
-    // setInputDate(values.inputdate || values.datePicker);
-    console.log("values", values);
+    setInputDate(values.datePicker.format("YYYY,MM,DD HH:mm"));
   };
   return (
     <div className="TimeAgo" style={{ margin: "20px" }}>
@@ -36,30 +35,22 @@ export const TimeAgo = () => {
         }}
         initialValues={{
           timestamp: inputTimestamp,
+          datePicker: moment(inputDate, "YYYY,MM,DD HH:mm"),
+          test: moment(inputDate, "YYYY,MM,DD HH:mm"),
         }}
       >
-        <Form.Item name="timestamp" label="input timestamp">
+        <Form.Item wrapperCol={{ span: 14 }} name="timestamp" label="input timestamp" hasFeedback>
           <Input placeholder="input timestamp" />
         </Form.Item>
 
         <h3>This Time:{ConvertTimestamp}</h3>
-        <Form.Item name="datePicker" label="input datePicker">
-          <DatePicker
-            showTime={{ format: "HH:mm" }}
-            format="YYYY,MM,DD HH:mm"
-            onChange={(value, dateString) => {
-              console.log("dateString", dateString);
-              setInputDate(dateString);
-            }}
-          />
+        <Form.Item name="datePicker" label="input datePicker" hasFeedback>
+          <DatePicker showTime={{ format: "HH:mm" }} format="YYYY,MM,DD HH:mm" placeholder="Select Time" />
         </Form.Item>
-        {/* <Form.Item name="inputdate" label="input timestamp">
-          <Input placeholder="input date" width={200} />
-        </Form.Item> */}
 
         <h3>This timestamp:{convertDateToTimestamp}</h3>
         <h3> it was ago: {Relative}</h3>
-        <Form.Item wrapperCol={{ span: 4 }}>
+        <Form.Item wrapperCol={{ span: 4 }} style={{ display: "inline-flex", minWidth: "80px" }}>
           <Button block type="primary" htmlType="submit">
             Submit
           </Button>

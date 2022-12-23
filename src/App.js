@@ -1,11 +1,38 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Home from "./pages/Home";
+import { createBrowserRouter, RouterProvider, Outlet, Link } from "react-router-dom";
+// import { Home, FormAntDesign, HeatMap } from "./pages";
+import { Home, FormAntDesign, HeatMap } from "pages";
+import "./App.css";
+
+const dataNavigation = [
+  {
+    path: "/",
+    name: "Home",
+  },
+  {
+    path: "/ant",
+    name: "Ant Design",
+  },
+  {
+    path: "/heatmap",
+    name: "Heat Map",
+  },
+];
+
 function App() {
   const Layout = () => {
     return (
       <div className="layout">
-        <header className="header">Header</header>
+        <header className="header">
+          Header
+          <div className="navigation">
+            {dataNavigation.map((item) => (
+              <button key={item.path}>
+                <Link to={item.path}>{item.name}</Link>
+              </button>
+            ))}
+          </div>
+        </header>
         <Outlet />
         <footer className="footer">Footer</footer>
       </div>
@@ -21,8 +48,12 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/Test",
-          element: <div>Test</div>,
+          path: "/ant",
+          element: <FormAntDesign />,
+        },
+        {
+          path: "/heatmap",
+          element: <HeatMap />,
         },
       ],
     },
