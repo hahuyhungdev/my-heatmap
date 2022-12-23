@@ -10,11 +10,6 @@ export const TimeAgo = () => {
   // convert timestamp to format date
   const ConvertTimestamp = moment.unix(inputTimestamp).format("YYYY,MM,DD HH:mm");
 
-  // console.log(date.fromNow(true));
-  var a = moment([2007, 10, 1]);
-  var b = moment([2007, 10, 3]);
-  // console.log(a.from(b));
-
   // convert date to timestamp
   const convertDateToTimestamp = moment(inputDate, "YYYY,MM,DD HH:mm").unix();
   // console.log("convertDateToTimestamp", convertDateToTimestamp);
