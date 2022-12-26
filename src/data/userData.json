@@ -1,0 +1,37 @@
+[
+  {
+    "username": "Samppa Nori",
+    "registered": "1325372400000",
+    "role": "Member",
+    "status": "Active",
+    "date": 1671323193
+  },
+  {
+    "username": "Ha Huy Hung",
+    "registered": "1671784703",
+    "role": "Staff",
+    "status": "Banned",
+    "date": 1671784703
+  },
+  {
+    "username": "Estavan Lykos",
+    "registered": "132805800000",
+    "role": "Staff",
+    "status": "Banned",
+    "date": 1671413193
+  },
+  {
+    "username": "Chetan Mohamed",
+    "registered": "13280800000",
+    "role": "Admin",
+    "status": "Inactive",
+    "date": 1668734793
+  },
+  {
+    "username": "Derick Maximinus",
+    "registered": "13532156400000",
+    "role": "Member",
+    "status": "Pending",
+    "date": 1664587593
+  }
+]

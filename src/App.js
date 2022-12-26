@@ -1,53 +1,71 @@
-import h337 from "heatmap.js";
-import React, { useEffect, useMemo, useRef } from "react";
+import React from "react";
+import { createBrowserRouter, RouterProvider, Outlet, Link } from "react-router-dom";
+// import { Home, FormAntDesign, HeatMap } from "./pages";
+import { Home, FormAntDesign, HeatMap } from "pages";
+import "./App.css";
 
-import "./style.css";
+const dataNavigation = [
+  {
+    path: "/",
+    name: "Home",
+  },
+  {
+    path: "/ant",
+    name: "Ant Design",
+  },
+  {
+    path: "/heatmap",
+    name: "Heat Map",
+  },
+];
 
 function App() {
-  const [data, setData] = React.useState([]);
-  const testData = useMemo(() => [], []);
-
-  console.log("render");
-  const points = useRef({});
-  useEffect(() => {
-    var heatmapInstance = h337.create({
-      container: document.querySelector(".demo-wrapper"),
-      radius: 15,
-      maxOpacity: 2.5,
-      minOpacity: 0,
-      blur: 0.75,
-    });
-    // const logs = [];
-    var dataLocal = localStorage.getItem("testData");
-    dataLocal = JSON.parse(dataLocal);
-    document.querySelector(".demo-wrapper").onmousemove = function (ev) {
-      points.current = {
-        x: ev.layerX,
-        y: ev.layerY,
-        value: Math.random() * 100,
-      };
-      console.log(points.current);
-      testData.push(points.current);
-      setData(testData);
-      // save test data to local storage
-      localStorage.setItem("testData", JSON.stringify(testData));
-
-      console.log(data);
-      heatmapInstance.addData(points.current === null ? dataLocal : points.current);
-    };
-
-    heatmapInstance.addData(dataLocal === null ? data : dataLocal);
-
-    // heatmapInstance.addData(points.current);
-  }, [data, testData]);
+  const Layout = () => {
+    return (
+      <div className="layout">
+        <header className="header">
+          Header
+          <div className="navigation">
+            {dataNavigation.map((item) => (
+              <button key={item.path}>
+                <Link to={item.path}>{item.name}</Link>
+              </button>
+            ))}
+          </div>
+        </header>
+        <Outlet />
+        <footer className="footer">Footer</footer>
+      </div>
+    );
+  };
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/ant",
+          element: <FormAntDesign />,
+        },
+        {
+          path: "/heatmap",
+          element: <HeatMap />,
+        },
+      ],
+    },
+    {
+      path: "*",
+      element: <div>404</div>,
+    },
+  ]);
 
   return (
     <div className="App">
-      <h2>Start editing to see some magic happen!</h2>
-      <div className="demo-wrapper">
-        <div className="heatmap"></div>
-      </div>
-      <button>Click</button>
+      <RouterProvider router={router} />
     </div>
   );
 }
