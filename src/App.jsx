@@ -1,6 +1,7 @@
 import h337 from "heatmap.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import mqtt from "precompiled-mqtt";
+// import mqtt from "precompiled-mqtt";
+import mqtt from "mqtt";
 
 import "./style.css";
 
@@ -10,7 +11,11 @@ function App() {
   const [typeGetValue, setTypeGetValue] = useState(false);
   const testData = useMemo(() => [], []);
   const points = useRef({});
-  const client = mqtt.connect("wss://test.mosquitto.org:8081");
+  var client = mqtt.connect("ws://192.168.1.148:1884", {
+    clientId: "mqttx_d8338b48qwe",
+    password: "admin",
+    username: "localweb",
+  });
 
   // client.on("connect", () => {
   //   setInterval(() => {
