@@ -33,19 +33,28 @@
   gap: 10px;
   margin-top: 10px;
 }
-.navigation a {
-  color: #eb500e;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: medium;
-  font-weight: 700;
-}
+
 .navigation button {
   min-width: 100px;
   border-radius: 10px;
   border: 1px solid #eb500e;
   padding: 5px;
 }
+.navigation button:hover {
+  background-color: #bb2e2e;
+  color: rgb(219, 219, 50);
+}
+.navigation button a {
+  color: #eb500e;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: medium;
+  font-weight: 700;
+}
+.navigation button a:hover {
+  color: rgb(219, 219, 50);
+}
+
 .header {
   margin-bottom: 30px;
 }

@@ -30,8 +30,8 @@ export const TimeAgo = () => {
         }}
         initialValues={{
           timestamp: inputTimestamp,
-          datePicker: moment(inputDate, "YYYY,MM,DD HH:mm"),
-          test: moment(inputDate, "YYYY,MM,DD HH:mm"),
+          // datePicker: moment(inputDate, "YYYY,MM,DD HH:mm"),
+          datePicker: "",
         }}
       >
         <Form.Item wrapperCol={{ span: 14 }} name="timestamp" label="input timestamp" hasFeedback>
