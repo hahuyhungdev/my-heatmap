@@ -7,7 +7,8 @@
       "@pages/*": ["pages/*"],
       "@data/*": ["data/*"],
       "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@redux/*": ["redux/*"]
     }
   }
 }

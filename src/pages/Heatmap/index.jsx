@@ -15,7 +15,7 @@ export function HeatMap() {
   useEffect(() => {
     var heatmapInstance = h337.create({
       container: document.querySelector(typeGetValue === false ? ".demo-wrapper" : ".heatmap"),
-      radius: 15,
+      radius: 10,
       maxOpacity: 2.5,
       minOpacity: 0,
       blur: 0.75,

@@ -2,16 +2,20 @@ import React, { useCallback } from "react";
 import moment from "moment";
 import { useState } from "react";
 import { Card, RangePicker, SelectOptions, ShowData, TimeAgo } from "components";
-// import usersData from "../../data/userData.json";
-import usersData from "data/userData.json";
-
+// import usersData from "data/userData.json";
+import { getDataSelector } from "redux/dataSlice";
 import "antd/dist/reset.css";
+import { useSelector } from "react-redux";
 
 export function Home() {
   const [valueIncrease, setValueIncrease] = useState(0);
   const [dates, setDates] = useState(["", ""]);
   const [date, setDate] = useState("");
   const [lastTime, setlastTime] = useState(6);
+  const [data, setData] = useState("");
+
+  const usersData = useSelector(getDataSelector);
+  console.log("dataStore", usersData);
 
   const handleChange = (data) => {
     // convert dataString to convert date to timestamp
@@ -38,7 +42,7 @@ export function Home() {
 
   // filter data by date range with timestamp
   // console.log("dates", dates);
-  const filterData = usersData.filter((item) => {
+  const filterData = usersData.data.filter((item) => {
     return (item.date >= dates[0] && item.date <= dates[1]) || item.date >= handleTimeAgo();
   });
   // console.log("filterData", filterData);
@@ -49,8 +53,8 @@ export function Home() {
   return (
     <div className="App">
       <h2>Start editing to see some magic happen!</h2>
-      <SelectOptions valuesSelect={valuesSelect} />
-      <TimeAgo />
+      {/* <SelectOptions valuesSelect={valuesSelect} /> */}
+      {/* <TimeAgo /> */}
       <RangePicker handleChange={handleChange} dates={dates} />
 
       <ShowData usersData={filterData} />

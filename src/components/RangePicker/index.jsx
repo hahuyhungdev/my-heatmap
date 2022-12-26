@@ -20,8 +20,8 @@ export const RangePicker = memo(({ dates, handleChange }) => {
         <Form.Item wrapperCol={{ span: 14 }} name="RangeDate" label="input timestamp" hasFeedback>
           <DatePicker.RangePicker
             // onChange={handleChange}
-            showTime={{ format: "HH:mm" }}
-            format="YYYY,MM,DD HH:mm"
+            showTime={{ format: "HH" }}
+            format="YYYY-MM-DD HH"
             placeholder={["Start Date", "End Date"]}
             disabledDate={(current) => current && current > moment().endOf("day")}
           />
